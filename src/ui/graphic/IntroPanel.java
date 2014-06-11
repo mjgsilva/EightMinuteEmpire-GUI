@@ -26,6 +26,7 @@ public class IntroPanel extends JPanel {
     private final JButton exit = new JButton("Exit");
 
     IntroPanel(GameModel gm) {
+        this.gm = gm;
         try {
             background = ImageIO.read(Resources.getResourceFile("resources/images/eightminute-cover.jpg"));
             setPreferredSize(new Dimension(background.getHeight(null), background.getWidth(null)));

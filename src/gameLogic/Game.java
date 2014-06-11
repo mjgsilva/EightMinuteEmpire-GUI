@@ -228,4 +228,10 @@ public class Game implements Serializable {
     public void setExitFlag(boolean exitFlag) {
         this.exitFlag = exitFlag;
     }
+
+    public void start() {
+        state = new PrepareGame(this);
+        previousState = new PrepareGame(this);
+        this.endGameFlag = false;
+    }
 }

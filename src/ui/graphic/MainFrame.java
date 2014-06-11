@@ -25,6 +25,8 @@ class MainFrame extends JFrame implements Observer {
     public MainFrame() {
         gm = new GameModel(new Game());
         
+        gm.addObserver(this);
+        
         setFrameLayout();
         
         setSize(1100, 720);
@@ -59,6 +61,8 @@ class MainFrame extends JFrame implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        south.setVisible(true);
+        intro.setVisible(false);
+        revalidate();
     }
 }

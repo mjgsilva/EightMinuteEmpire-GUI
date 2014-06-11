@@ -20,7 +20,8 @@ public class GameModel extends Observable {
     }
     
     public void start() {
-        
+        game.start();
+        sendNotification();
     }
 
     private void sendNotification() {

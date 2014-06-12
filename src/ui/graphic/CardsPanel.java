@@ -1,5 +1,6 @@
 package ui.graphic;
 
+import gameLogic.Card;
 import gameLogic.models.GameModel;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -19,32 +20,51 @@ public class CardsPanel extends JPanel implements Observer {
     private GameModel gm;
     JButton b;
 
-    private ArrayList<JLabel> cardsImgs = new ArrayList<>();
+    private final ArrayList<JLabel> cardsImgs = new ArrayList<>();
     
     CardsPanel(GameModel gm) {
         this.gm = gm;
         
+        gm.addObserver(this);
+        
         setLayout(new FlowLayout());
 
-       
-        while(cardsImgs.size() < 6) {
+        buildLayout();
+
+        setBackground(Color.LIGHT_GRAY);
+    }
+    
+    private void buildLayout() {
+        // Instanciate arraylist
+        while(cardsImgs.size() < 6)
             cardsImgs.add(new JLabel());
-        }
+        
+        for (JLabel aux : cardsImgs)
+            add(aux);
+    }
+    
+    private void fillCards() {
+        ArrayList <Card> cards = gm.getTableCards();
+        
         int i = 1;
         for (JLabel aux : cardsImgs) {
-            placeImg(aux, i);
-            add(aux);
+            placeImg(aux, cards.get(i-1).getId());
+            //add(aux);
             i++;
         }
-        setBackground(Color.LIGHT_GRAY);
     }
     
     private void placeImg(JLabel aux, int i) {
         BufferedImage img = null;
         try {
-            img = ImageIO.read(Resources.getResourceFile("resources/images/cards/card00" + i + ".jpg"));
+            if (i < 10)
+                img = ImageIO.read(Resources.getResourceFile("resources/images/cards/card00" + i + ".jpg"));
+            else
+                img = ImageIO.read(Resources.getResourceFile("resources/images/cards/card0" + i + ".jpg"));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            return;
         }
 
         aux.setIcon(new ImageIcon(img.getScaledInstance(126, 200,Image.SCALE_SMOOTH)));
@@ -63,6 +83,7 @@ public class CardsPanel extends JPanel implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // update table cards
+        fillCards();
     }
 }

@@ -44,7 +44,7 @@ class MainFrame extends JFrame implements Observer {
         center = new JPanel();
         center.setPreferredSize(new Dimension(1100, 600));
         center.setLayout(new FlowLayout());
-        center.setBackground(Color.BLACK);
+        center.setBackground(Color.DARK_GRAY);
         center.setAlignmentX(CENTER_ALIGNMENT);
         center.setAlignmentY(CENTER_ALIGNMENT);
         center.add(intro);
@@ -53,6 +53,8 @@ class MainFrame extends JFrame implements Observer {
         south.setLayout(new FlowLayout());
         south.setBackground(Color.LIGHT_GRAY);
         south.setPreferredSize(new Dimension(100, 200));
+        south.add(new CardsPanel(gm));
+        south.add(new PlayerInfoPanel(gm));
         south.setVisible(false);
         
         contentPane.add(center, BorderLayout.CENTER);

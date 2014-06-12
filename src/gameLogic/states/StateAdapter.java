@@ -30,5 +30,5 @@ public abstract class StateAdapter implements StateInterface, Serializable {
     @Override
     public StateInterface defineAction(int n) {
         return this;
-    }    
+    }
 }

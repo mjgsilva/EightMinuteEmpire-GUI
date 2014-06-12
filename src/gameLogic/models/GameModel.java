@@ -1,9 +1,12 @@
 package gameLogic.models;
 
+import gameLogic.Card;
 import gameLogic.Game;
-import java.util.Observable;
+import gameLogic.GameAdapter;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class GameModel extends Observable {
+public class GameModel extends GameAdapter implements Serializable {
     Game game;
 
     public GameModel(Game game) {
@@ -19,11 +22,19 @@ public class GameModel extends Observable {
         sendNotification();
     }
     
+    @Override
     public void start() {
         game.start();
         sendNotification();
     }
 
+    @Override
+    public ArrayList<Card> getTableCards() {
+        ArrayList<Card> temp = game.getTableCards();
+        sendNotification();
+        return temp;
+    }
+    
     private void sendNotification() {
         setChanged();
         notifyObservers();

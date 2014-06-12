@@ -5,7 +5,7 @@ import gameLogic.states.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game implements Serializable {
+public class Game extends GameAdapter implements Serializable {
     private StateInterface state;
     private StateInterface previousState;
 
@@ -84,6 +84,7 @@ public class Game implements Serializable {
         this.deck = deck;
     }
 
+    @Override
     public ArrayList<Card> getTableCards() {
         return tableCards;
     }

@@ -1,11 +1,11 @@
 package ui.graphic;
 
 import gameLogic.models.GameModel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,15 +43,7 @@ public class IntroPanel extends JPanel {
         
         center = new JPanel();
         center.add(j);
-        
-//        try {
-//            background = ImageIO.read(Resources.getResourceFile("resources/images/eightminute-cover.jpg"));
-//            setPreferredSize(new Dimension(background.getHeight(null), background.getWidth(null)));
-//            setMinimumSize(getMinimumSize());
-//            setBackground(Color.DARK_GRAY);
-//        } catch (IOException e) {
-//        }
-        
+
         south = new JPanel();
         south.setPreferredSize(new Dimension(100, 50));
         south.setBackground(Color.LIGHT_GRAY);
@@ -70,7 +62,27 @@ public class IntroPanel extends JPanel {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gm.start();
+                // Show MessageBox
+                Object[] options = {"2", "3", "4", "5"};
+                Object val = JOptionPane.showInputDialog(null,
+                        "Number of Players:", "Define Number of Players",
+                        JOptionPane.INFORMATION_MESSAGE, null,
+                        options, options[0]);
+                if (val != null) {
+                    // Artificial Intelligence Number
+                    Object[] optionsComputers = new Object[Integer.parseInt(val.toString()) + 1];
+                    for (int i = 0; i < Integer.parseInt(val.toString()) + 1; i++) {
+                        optionsComputers[i] = Integer.toString(i);
+                    }
+
+                    Object val2 = JOptionPane.showInputDialog(null,
+                            "Number of Computer Players:", "Define Number of Computer Players",
+                            JOptionPane.INFORMATION_MESSAGE, null,
+                            optionsComputers, optionsComputers[0]);
+
+                    if (val2 != null)
+                        gm.defineGame(Integer.parseInt(val.toString()));
+                }
             }
         });
 
@@ -92,13 +104,4 @@ public class IntroPanel extends JPanel {
             }
         });
     }
-    
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        if (background != null) {
-//            g.drawImage(background, (getWidth()/2)-225, 25, 450, 700, null);
-//        } else {
-//            super.paintComponent(g);
-//        }
-//    }
 }

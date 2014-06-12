@@ -293,7 +293,7 @@
                 <fivePlayersCard>0</fivePlayersCard>
                 <action> 
                         <type>4</type>
-                        <howMany>3</howMany>
+                        <howMany>1</howMany>
                 </action>
         </Card>
         <Card id="32">

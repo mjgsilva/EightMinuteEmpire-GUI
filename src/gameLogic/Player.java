@@ -1,7 +1,10 @@
 package gameLogic;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import ui.IsGraphical;
 
 public class Player implements Serializable  {
     // Player id
@@ -17,32 +20,57 @@ public class Player implements Serializable  {
 
     
     private int score = 0;
+    private Color GraphicalColor;
     
     public Player(int id) {
         this.id = id;
         
         
         objCounter++;
-        // Determine Player color
-        switch (objCounter) {
-            case 1:
-                color = "\u001B[31m"; // RED
-                break;
-            case 2:
-                color = "\u001B[34m"; // BLUE
-                break;
-            case 3:
-                color = "\u001B[32m"; // GREEN
-                break;
-            case 4:
-                color = "\u001B[33m"; // YELLOW
-                break;
-            case 5:
-                color = "\u001B[35m"; // PURPLE
-                break;
-            default:
-                color = "";
-                break;
+        if (!IsGraphical.isGraphical) {
+            // Determine Player color
+            switch (objCounter) {
+                case 1:
+                    color = "\u001B[31m"; // RED
+                    break;
+                case 2:
+                    color = "\u001B[34m"; // BLUE
+                    break;
+                case 3:
+                    color = "\u001B[32m"; // GREEN
+                    break;
+                case 4:
+                    color = "\u001B[33m"; // YELLOW
+                    break;
+                case 5:
+                    color = "\u001B[35m"; // PURPLE
+                    break;
+                default:
+                    color = "";
+                    break;
+            }
+        } else {
+            color = "";
+            // Determine Player color
+            switch (objCounter) {
+                case 1:
+                    GraphicalColor = Color.RED;
+                    break;
+                case 2:
+                    GraphicalColor = Color.BLUE;
+                    break;
+                case 3:
+                    GraphicalColor = Color.GREEN;
+                    break;
+                case 4:
+                    GraphicalColor = Color.YELLOW;
+                    break;
+                case 5:
+                    GraphicalColor = Color.PINK;
+                    break;
+                default:
+                    break;
+            }
         }
         // Add 14 Army man to player
         for (int i = 0; i < 14; i++)
@@ -72,6 +100,11 @@ public class Player implements Serializable  {
     public String getColor() {
         return color;
     }
+
+    public Color getGraphicalColor() {
+        return GraphicalColor;
+    }
+    
     
     public void useCoins(int cost) {
         this.coins = this.coins - cost;

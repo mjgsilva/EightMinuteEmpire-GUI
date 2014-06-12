@@ -44,6 +44,7 @@ public class Game extends GameAdapter implements Serializable {
         return map.toString();
     }
     
+    @Override
     public StateInterface getState() {
         return state;
     }
@@ -68,6 +69,7 @@ public class Game extends GameAdapter implements Serializable {
         this.players = players;
     }
 
+    @Override
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -101,6 +103,7 @@ public class Game extends GameAdapter implements Serializable {
         this.tableCards = tableCards;
     }
     
+    @Override
     public void defineGame(int n) {
         state = state.defineGame(n);
     }
@@ -109,6 +112,7 @@ public class Game extends GameAdapter implements Serializable {
         state = state.defineWinner(bets);
     }
     
+    @Override
     public void defineCard(int n) {
         state = state.defineCard(n);
     }
@@ -228,11 +232,5 @@ public class Game extends GameAdapter implements Serializable {
 
     public void setExitFlag(boolean exitFlag) {
         this.exitFlag = exitFlag;
-    }
-
-    public void start() {
-        state = new PrepareGame(this);
-        previousState = new PrepareGame(this);
-        this.endGameFlag = false;
     }
 }

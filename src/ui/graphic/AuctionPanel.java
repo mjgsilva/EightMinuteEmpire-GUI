@@ -2,8 +2,9 @@ package ui.graphic;
 
 import gameLogic.models.GameModel;
 import gameLogic.states.Auction;
+import gameLogic.states.PrepareGame;
+
 import java.awt.Color;
-import static java.awt.Component.RIGHT_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,6 +31,8 @@ class AuctionPanel extends JPanel implements Observer{
     private  JLabel coins = new JLabel();
     private JComboBox bet;
     private final JButton b = new JButton("Bet!");
+    JComboBox resources = new JComboBox();
+    
     
     private final ArrayList<Integer> bets = new ArrayList<>();
     
@@ -62,8 +65,6 @@ class AuctionPanel extends JPanel implements Observer{
         vertical.add(new JLabel("Current Player:"));
         vertical.add(player);
         
-        
-        vertical.add(new JLabel("Coins:"));
         vertical.add(coins);
         
         
@@ -89,32 +90,60 @@ class AuctionPanel extends JPanel implements Observer{
                 bet.addItem(Integer.toString(i));
             
             registerListeners();
+            
             for (; bets.size() < gm.getPlayers().size(); bets.add(0));
         }
         if (gm.getState() instanceof Auction) {
             player.setText("" + gm.getPlayers().get(index).getId());
             player.setForeground(gm.getPlayers().get(index).getGraphicalColor());
 
-            coins.setText("" + gm.getPlayers().get(index).getCoins());
+            coins.setText("Coins: " + gm.getPlayers().get(index).getCoins());
             
             
+        } else if (gm.getState() instanceof PrepareGame.DefineJokers) {
+            JButton changeCardButton = new JButton("Set");
+            
+            title.setText("- Define Jokers - ");
+            player.setText("" + gm.getPlayers().get(index).getId());
+            player.setForeground(gm.getPlayers().get(index).getGraphicalColor());
+            coins.setVisible(false);
+            bet.setVisible(false);
+
+            resources.addItem("Jewelry");
+            resources.addItem("Food");
+            resources.addItem("Wood");
+            resources.addItem("Iron");
+            resources.addItem("Tools");
+            add(resources);
+            add(changeCardButton);
+            
+            changeCardButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    gm.defineGame(resources.getSelectedIndex()+1);
+                }
+            });
+            
+        } else {
+            setVisible(false);
         }
             
     }
 
     private void registerListeners() {
         b.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (index + 1 >= gm.getPlayers().size())
-                        gm.defineWinner(bets);
-                    else {
-                        bets.set(index, bet.getSelectedIndex());
-                        index++;
-                    }
-                    
-                    update(null, null);
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (index + 1 >= gm.getPlayers().size()) {
+                    bets.set(index, bet.getSelectedIndex());
+                    gm.defineWinner(bets);
+                } else {
+                    bets.set(index, bet.getSelectedIndex());
+                    index++;
                 }
-            });
+                bet.setSelectedIndex(0);
+                update(null, null);
+            }
+        });
     }
 }

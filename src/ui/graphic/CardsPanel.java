@@ -80,6 +80,7 @@ public class CardsPanel extends JPanel implements Observer {
     
     private void registerListeners() {
         for (int i = 0; i < cardsImgs.size(); i++) {
+            cardSelectedIndex = i;
             cardsImgs.get(i).addMouseListener(new MouseAdapter() {
                 int n = cardSelectedIndex;
                 @Override
@@ -93,11 +94,14 @@ public class CardsPanel extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         fillCards();
-        if (gm.getState() instanceof PickCard)
+        if (gm.getState() instanceof PickCard) {
+            // Enable card buttons
+            for (JButton aux : cardsImgs) 
+                aux.setEnabled(true);
             // update table cards
             fillCards();
-        //else
-        //    for (JButton aux : cardsImgs) 
-        //        aux.setEnabled(false);
+        } else
+            for (JButton aux : cardsImgs) 
+                aux.setEnabled(false);
     }
 }

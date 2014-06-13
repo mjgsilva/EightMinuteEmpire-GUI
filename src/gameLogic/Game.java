@@ -167,6 +167,7 @@ public class Game extends GameAdapter implements Serializable {
         this.errorMsg = errorMsg;
     }
     
+    @Override
     public boolean getEndGameFlag() {
         return endGameFlag;
     }

@@ -32,6 +32,9 @@ public abstract class GameAdapter extends Observable implements GameInterface, S
     }
 
     @Override
+    public abstract boolean getEndGameFlag();
+    
+    @Override
     public abstract void defineGame(int n);
 
     @Override

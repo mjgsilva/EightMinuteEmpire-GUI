@@ -15,6 +15,8 @@ interface GameInterface {
     
     public ArrayList<Player> getPlayers();
     
+    public boolean getEndGameFlag();
+    
     public void defineGame(int n);
     
     public void defineCard(int i);

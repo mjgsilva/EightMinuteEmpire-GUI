@@ -73,5 +73,8 @@ public class GameModel extends GameAdapter implements Serializable {
         return game.getPlayers();
     }
 
-    
+    @Override
+    public boolean getEndGameFlag() {
+        return game.getEndGameFlag();
+    }
 }

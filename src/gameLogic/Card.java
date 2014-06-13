@@ -1,6 +1,8 @@
 package gameLogic;
 
 import gameLogic.states.StateInterface;
+import ui.IsGraphical;
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
@@ -40,8 +42,12 @@ public class Card implements Serializable  {
     
     @Override
     public String toString() {
-        return "ID: " + id + " \t[NR:" + numberOfResource + "|" + getFivePlayersCardToString() + "] " + getTypeOfResource()
-                + "\tAct: " + getActionsExtended();
+        if (IsGraphical.isGraphical)
+            return "Resource: " + getTypeOfResource() + "\n"
+                    + "Action: " + getActionsExtended();
+        else
+            return "ID: " + id + " \t[NR:" + numberOfResource + "|" + getFivePlayersCardToString() + "] " + getTypeOfResource()
+                    + "\tAct: " + getActionsExtended();
     }
 
     private String getTypeOfResource()
@@ -96,11 +102,11 @@ public class Card implements Serializable  {
 
         switch(actionIndex)
         {
-            case 1 : actionList = "Place Army"; break;
-            case 2 : actionList = "Move Army by Land"; break;
-            case 3 : actionList = "Move Army by Sea"; break;
-            case 4 : actionList = "Build a City"; break;
-            case 5 : actionList = "Neutralize Army"; break;
+            case 1 : actionList = "Place Army\n"; break;
+            case 2 : actionList = "Move Army by Land\n"; break;
+            case 3 : actionList = "Move Army by Sea\n"; break;
+            case 4 : actionList = "Build a City\n"; break;
+            case 5 : actionList = "Neutralize Army\n"; break;
         }
 
         actionList += " | " + actionUnits + " Unit[s]";

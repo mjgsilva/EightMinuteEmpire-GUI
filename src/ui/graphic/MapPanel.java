@@ -36,7 +36,7 @@ public class MapPanel extends JPanel implements Observer {
     private void buildLayout() {
         loadMap(mm);
         
-        mapBackgroundPanel = new MapBackground(mm);
+        mapBackgroundPanel = new MapBackground(mm,gm);
         mapBackgroundPanel.setPreferredSize(new Dimension(775,564));
         add(mapBackgroundPanel);
     }

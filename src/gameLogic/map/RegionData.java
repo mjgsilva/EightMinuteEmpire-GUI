@@ -18,6 +18,7 @@ public class RegionData implements IRegion , Serializable{
     List<Shape> areas=new ArrayList<Shape>();
     Map<Shape,String> names=new HashMap<Shape,String>();
 	
+    @Override
     public String getAreaName(Shape p){
 	return names.get(p);
     }

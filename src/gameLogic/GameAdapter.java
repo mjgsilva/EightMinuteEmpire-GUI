@@ -21,7 +21,13 @@ public abstract class GameAdapter extends Observable implements GameInterface, S
         return null;
     }
     
+    @Override
     public Player getCurrentPlayer() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Player> getPlayers() {
         return null;
     }
 
@@ -30,4 +36,7 @@ public abstract class GameAdapter extends Observable implements GameInterface, S
 
     @Override
     public abstract void defineCard(int i);
+    
+    @Override
+    public abstract void defineWinner(ArrayList<Integer> bets);
 }

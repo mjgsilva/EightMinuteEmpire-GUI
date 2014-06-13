@@ -13,7 +13,11 @@ interface GameInterface {
     
     public Player getCurrentPlayer();
     
+    public ArrayList<Player> getPlayers();
+    
     public void defineGame(int n);
     
     public void defineCard(int i);
+    
+    public void defineWinner(ArrayList<Integer> bets);
 }

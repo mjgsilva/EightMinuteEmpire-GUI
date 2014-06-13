@@ -49,7 +49,7 @@ public class Game extends GameAdapter implements Serializable {
         return state;
     }
     
-    
+    @Override
     public ArrayList<Player> getPlayers() {
         return players;
     }
@@ -108,6 +108,7 @@ public class Game extends GameAdapter implements Serializable {
         state = state.defineGame(n);
     }
 
+    @Override
     public void defineWinner(ArrayList<Integer> bets) {
         state = state.defineWinner(bets);
     }

@@ -77,17 +77,6 @@ public class CardsPanel extends JPanel implements Observer {
         aux.setFocusPainted(false);
         aux.setIcon(new ImageIcon(img.getScaledInstance(126, 200,Image.SCALE_SMOOTH)));
     }
-//
-//    private ImageIcon createImageIcon(String path) {
-//        ClassLoader cl = this.getClass().getClassLoader();
-//        java.net.URL imgURL = cl.getResource(path);
-//        if (imgURL != null) {
-//            return new ImageIcon(imgURL);
-//        } else {
-//            System.err.println(" Nao encontrou o ficheiro: " + path);
-//            return null;
-//        }
-//    }
     
     private void registerListeners() {
         for (int i = 0; i < cardsImgs.size(); i++) {

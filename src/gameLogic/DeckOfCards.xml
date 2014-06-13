@@ -77,7 +77,7 @@
                 <numberOfResources>2</numberOfResources>
                 <fivePlayersCard>0</fivePlayersCard>
                 <action> 
-                        <type>2</type>
+                        <type>1</type>
                         <howMany>3</howMany>
                 </action>
         </Card>

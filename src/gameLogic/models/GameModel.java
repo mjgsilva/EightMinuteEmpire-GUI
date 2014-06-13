@@ -58,9 +58,20 @@ public class GameModel extends GameAdapter implements Serializable {
     }
     
     @Override
+    public void defineWinner(ArrayList<Integer> bets) {
+        game.defineWinner(bets);
+        sendNotification();
+    }
+    
+    @Override
     public Player getCurrentPlayer() {
         return game.getCurrentPlayer();
     }
     
+    @Override
+    public ArrayList<Player> getPlayers() {
+        return game.getPlayers();
+    }
+
     
 }

@@ -92,6 +92,7 @@ class AuctionPanel extends JPanel implements Observer{
             registerListeners();
             
             for (; bets.size() < gm.getPlayers().size(); bets.add(0));
+            initCombo = true;
         }
         if (gm.getState() instanceof Auction) {
             player.setText("" + gm.getPlayers().get(index).getId());

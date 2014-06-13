@@ -42,4 +42,7 @@ public abstract class GameAdapter extends Observable implements GameInterface, S
     
     @Override
     public abstract void defineWinner(ArrayList<Integer> bets);
+    
+    @Override
+    public abstract void defineAction(int n);
 }

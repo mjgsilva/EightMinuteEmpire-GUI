@@ -22,4 +22,6 @@ interface GameInterface {
     public void defineCard(int i);
     
     public void defineWinner(ArrayList<Integer> bets);
+    
+    public void defineAction(int n);
 }

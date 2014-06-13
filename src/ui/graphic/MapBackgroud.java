@@ -7,6 +7,10 @@ import gameLogic.map.MapDataModel;
 import gameLogic.map.Region;
 import gameLogic.map.RegionData;
 import gameLogic.models.GameModel;
+import gameLogic.states.BuildCity;
+import gameLogic.states.MoveArmyByLand;
+import gameLogic.states.MoveArmyBySea;
+import gameLogic.states.NeutralizeArmy;
 import gameLogic.states.PlaceNewArmy;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -51,11 +55,17 @@ class MapBackground extends JPanel implements Observer{
         addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent ev){
-                if(gm.getState() instanceof PlaceNewArmy)
-                {
+                regionId = 0;
                     String region = model.getRegion(ev.getPoint());
                     if(region != null)
                         regionId = Integer.parseInt(region);
+                if(gm.getState() instanceof PlaceNewArmy ||
+                        gm.getState() instanceof MoveArmyByLand ||
+                        gm.getState() instanceof MoveArmyBySea ||
+                        gm.getState() instanceof BuildCity ||
+                        gm.getState() instanceof NeutralizeArmy)
+                {
+                    gm.defineAction(regionId);
                     repaint();
                 }
             }

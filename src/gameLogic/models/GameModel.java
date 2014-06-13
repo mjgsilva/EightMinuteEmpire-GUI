@@ -64,6 +64,12 @@ public class GameModel extends GameAdapter implements Serializable {
     }
     
     @Override
+    public void defineAction(int n) {
+        game.defineAction(n);
+        sendNotification();
+    }
+    
+    @Override
     public Player getCurrentPlayer() {
         return game.getCurrentPlayer();
     }

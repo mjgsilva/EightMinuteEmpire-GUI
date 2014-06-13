@@ -89,6 +89,7 @@ public class CardDecisonPanel extends JPanel implements Observer {
             }
 
             registerListeners();
+            initCombo = true;
         }
         if (gm.getState() instanceof OR || gm.getState() instanceof AND) {
             setVisible(true);
@@ -103,7 +104,7 @@ public class CardDecisonPanel extends JPanel implements Observer {
         b.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gm.defineCard(action.getSelectedIndex());
+                gm.defineCard(action.getSelectedIndex()+1);
             }
         });
     }

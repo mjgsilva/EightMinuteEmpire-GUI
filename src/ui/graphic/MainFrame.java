@@ -1,6 +1,7 @@
 package ui.graphic;
 
 import gameLogic.Game;
+import gameLogic.map.MapDataModel;
 import gameLogic.models.GameModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,19 +13,15 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * 
- */
 class MainFrame extends JFrame implements Observer {
     private GameModel gm;
-    
+    private MapDataModel mdm;
     private JPanel center, south;
-    private JPanel intro;
+    private JPanel intro, map;
     
     public MainFrame() {
         gm = new GameModel(new Game());
-        
+        mdm = new MapDataModel(null);
         gm.addObserver(this);
         
         setFrameLayout();
@@ -40,7 +37,7 @@ class MainFrame extends JFrame implements Observer {
 	contentPane.setLayout(new BorderLayout());
         
         intro = new IntroPanel(gm);
-        
+        map = new MapPanel(gm,mdm);
         center = new JPanel();
         center.setPreferredSize(new Dimension(1100, 600));
         center.setLayout(new FlowLayout());
@@ -48,6 +45,8 @@ class MainFrame extends JFrame implements Observer {
         center.setAlignmentX(CENTER_ALIGNMENT);
         center.setAlignmentY(CENTER_ALIGNMENT);
         center.add(intro);
+        center.add(map);
+        map.setVisible(false);
         
         south = new JPanel();
         south.setLayout(new FlowLayout());
@@ -65,6 +64,7 @@ class MainFrame extends JFrame implements Observer {
     public void update(Observable o, Object arg) {
         south.setVisible(true);
         intro.setVisible(false);
+        map.setVisible(true);
         revalidate();
     }
 }

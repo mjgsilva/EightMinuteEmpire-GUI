@@ -12,6 +12,7 @@ import gameLogic.states.NeutralizeArmy;
 import gameLogic.states.OR;
 import gameLogic.states.PickCard;
 import gameLogic.states.PlaceNewArmy;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,7 +21,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 
-public class ComputerAI implements Observer {
+public class ComputerAI implements Observer, Serializable {
     private GameModel gm;
     private ArrayList<Player> aiPlayers = new ArrayList<>();
     private Random random = new Random();

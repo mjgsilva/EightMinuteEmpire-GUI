@@ -1,10 +1,7 @@
 package ui.graphic;
 
-<<<<<<< HEAD
 import gameLogic.Game;
-=======
 import ai.ComputerAI;
->>>>>>> c9cdae96369e5ad32b18563118c94056c6bbbd6b
 import gameLogic.models.GameModel;
 import java.awt.BorderLayout;
 import java.awt.Color;

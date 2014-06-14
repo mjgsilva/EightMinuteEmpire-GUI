@@ -26,9 +26,10 @@ class MainFrame extends JFrame implements Observer {
         
         setFrameLayout();
         
-        setSize(1100, 720);
+        setSize(1100, 770);
         setTitle("Eight Minutes Empire");
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     

@@ -4,15 +4,24 @@ import gameLogic.Player;
 import gameLogic.models.GameModel;
 import gameLogic.states.AND;
 import gameLogic.states.Auction;
+import gameLogic.states.BuildCity;
+import gameLogic.states.MoveArmyByLand;
+import gameLogic.states.MoveArmyBySea;
+import gameLogic.states.NeutralizeArmy;
 import gameLogic.states.OR;
 import gameLogic.states.PickCard;
+import gameLogic.states.PlaceNewArmy;
 import gameLogic.states.PrepareGame;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -28,6 +37,9 @@ public class PlayerInfoPanel extends JPanel implements Observer {
     private final JLabel player = new JLabel();
     private final JLabel coins = new JLabel();
     private final JTextArea cardDescription = new JTextArea();
+    private final JButton checkBt = new JButton("Check");
+    private final JComboBox playersCombo = new JComboBox();
+    private final JButton defPlayerBt = new JButton("Send");
     
     private final JPanel auctionPanel;
     private final JPanel cardDecisionPanel;
@@ -71,7 +83,13 @@ public class PlayerInfoPanel extends JPanel implements Observer {
         cardDescription.setBackground(Color.LIGHT_GRAY);
         cardDescription.setPreferredSize(new Dimension(160, 50));
         vertical.add(cardDescription);
-        vertical.add(Box.createGlue());
+        //vertical.add(Box.createGlue());
+        vertical.add(Box.createVerticalStrut(5));
+        vertical.add(checkBt);
+        vertical.add(playersCombo);
+        vertical.add(defPlayerBt);
+        playersCombo.setVisible(false);
+        defPlayerBt.setVisible(false);
         add(vertical);
         
         verticalAuction.add(auctionPanel);
@@ -80,11 +98,12 @@ public class PlayerInfoPanel extends JPanel implements Observer {
         verticalDecision.add(cardDecisionPanel);
                 
         add(verticalDecision);
+        
+        registerListeners();
     }
     
     @Override
     public void update(Observable o, Object arg) {
-        // TO DO: Depending on current state shows number of plays
         if (!(gm.getState() instanceof PrepareGame) && !(gm.getState() instanceof Auction) &&
                 !(gm.getState() instanceof OR) && !(gm.getState() instanceof AND)) {
             if (gm.getPreviousState() instanceof Auction) {
@@ -96,22 +115,34 @@ public class PlayerInfoPanel extends JPanel implements Observer {
             player.setForeground(gm.getCurrentPlayer().getGraphicalColor());
 
             coins.setText("Coins: " + gm.getCurrentPlayer().getCoins());
-
+            
             if (!(gm.getState() instanceof PickCard)) {
                 cardDescription.setVisible(true);
+                checkBt.setVisible(true);
                 cardDescription.setText("Card Description:\n " + gm.getCurrentPlayer().getLastCard());
+                
+                if (gm.getState() instanceof NeutralizeArmy.InsertPlayer) {
+                    cardDescription.setVisible(false);
+                    playersCombo.setVisible(true);
+                    defPlayerBt.setVisible(true);
+                    
+                    for (int i = 0; i < gm.getPlayers().size(); i++)
+                        playersCombo.addItem("Player " + i + 1);
+                }
             } else {
                 cardDescription.setVisible(false);
+                checkBt.setVisible(false);
+                playersCombo.setVisible(false);
+                defPlayerBt.setVisible(false);
             }
         } else if (gm.getState() instanceof Auction) {
             vertical.setVisible(false);
             verticalAuction.setVisible(true);
         } else if (gm.getState() instanceof AND || gm.getState() instanceof OR) {
-            vertical.setVisible(false);
-            
-// ACTIONS STATES PUT HERE, FOR BETTER ORGANIZATION
-            
-        } if (gm.getEndGameFlag()) {
+            vertical.setVisible(false); 
+        }
+        
+        if (gm.getEndGameFlag()) {
             gm.defineGame(0);
             if (gm.getState() instanceof PrepareGame.DefineJokers) {
                 // JOKERS
@@ -135,9 +166,21 @@ public class PlayerInfoPanel extends JPanel implements Observer {
                 }
             }
         }
+    }
 
-            
-
-        // number of plays depends on current state, TO DO
+    private void registerListeners() {
+        checkBt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                gm.defineAction(0);
+            }
+        });
+        
+        defPlayerBt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                gm.defineAction(playersCombo.getSelectedIndex() + 1);
+            }
+        });
     }
 }

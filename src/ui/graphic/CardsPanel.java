@@ -75,7 +75,7 @@ public class CardsPanel extends JPanel implements Observer {
 
         aux.setMargin(new Insets(0,0,0,0));
         aux.setFocusPainted(false);
-        aux.setIcon(new ImageIcon(img.getScaledInstance(126, 200,Image.SCALE_SMOOTH)));
+        aux.setIcon(new ImageIcon(img.getScaledInstance(116, 180,Image.SCALE_SMOOTH)));
     }
     
     private void registerListeners() {

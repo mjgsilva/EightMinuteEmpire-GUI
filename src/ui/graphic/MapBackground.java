@@ -11,6 +11,7 @@ import gameLogic.states.BuildCity;
 import gameLogic.states.MoveArmyByLand;
 import gameLogic.states.MoveArmyBySea;
 import gameLogic.states.NeutralizeArmy;
+import gameLogic.states.PickCard;
 import gameLogic.states.PlaceNewArmy;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -32,7 +33,6 @@ import javax.swing.JPanel;
 class MapBackground extends JPanel implements Observer{
     MapDataModel model;
     String overLocation=null;
-    Shape highlight=null;
     int regionId;
     private GameModel gm;    
     
@@ -41,16 +41,6 @@ class MapBackground extends JPanel implements Observer{
         this.model=themodel;
         this.gm = gm;
         gm.addObserver(this);
-        /* addMouseMotionListener(new MouseMotionAdapter(){
-            @Override
-            public void mouseMoved(MouseEvent ev){
-                String s=model.getRegion(ev.getPoint());
-                if(s!=overLocation){
-                    overLocation=s;
-                    repaint();
-                }
-            }
-        }); */
         
         addMouseListener(new MouseAdapter(){
             @Override
@@ -74,23 +64,26 @@ class MapBackground extends JPanel implements Observer{
     
     @Override
     public void update(Observable o, Object arg) {
+        if (!(gm.getState() instanceof PickCard))
             repaint();	
     }
 
     private void fill(Graphics g) {
+        Shape highlight=null;
         if(!model.getRegions().isEmpty()){
             for (int i = 0; i < model.getRegions().size(); i++) {
                 if (model.getAreaName(model.getRegions().get(i)).equals(Integer.toString(regionId)))
                     highlight=model.getRegions().get(i);
             }
         }
-        if(highlight!=null)
+        if(highlight!=null && !(gm.getGame().getState() instanceof PickCard))
         {
             Graphics2D g2d=(Graphics2D)g;
             g2d.setPaint(new Color(255,255,255,150));
             g2d.fill(highlight);
+        } else {
+            regionId = 0;
         }
-        
         
         
         for (int i = 0; i < model.getRegions().size(); i++) {
@@ -117,6 +110,13 @@ class MapBackground extends JPanel implements Observer{
                 
                 if(gm.getGame().getMap().getRegionById(Integer.parseInt(r)).checkCitiesOfPlayerOnRegion(tempPlayer))
                 {
+                    z = 0;
+                    xx++;
+                    if (xx == 3) {
+                        yy++;
+                        xx = 0;
+                    }
+                    g.setColor(tempPlayer.getGraphicalColor());
                     g.fillOval(x + xx*25, y + yy*25,18, 18);
                     for(City tempCity:gm.getGame().getMap().getRegionById(Integer.parseInt(r)).getCities())
                         if(tempCity.getIdOfOwner() == tempPlayer.getId())

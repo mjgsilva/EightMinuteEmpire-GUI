@@ -10,6 +10,7 @@ import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MapPanel extends JPanel implements Observer {
+public class MapPanel extends JPanel implements Observer{
     private MapDataModel mm;
     private GameModel gm;
     private MapBackground mapBackgroundPanel;

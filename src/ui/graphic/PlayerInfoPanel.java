@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.Box;
@@ -26,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class PlayerInfoPanel extends JPanel implements Observer {
+public class PlayerInfoPanel extends JPanel implements Observer{
     private GameModel gm;
     
     private Box vertical;

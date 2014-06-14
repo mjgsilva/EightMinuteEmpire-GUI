@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,7 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class CardsPanel extends JPanel implements Observer {
+public class CardsPanel extends JPanel implements Observer{
     private GameModel gm;
     private JButton b;
     
@@ -37,6 +38,11 @@ public class CardsPanel extends JPanel implements Observer {
         buildLayout();
 
         setBackground(Color.LIGHT_GRAY);
+    }
+    
+    public void setGame(GameModel gm)
+    {
+        this.gm = gm;
     }
     
     private void buildLayout() {

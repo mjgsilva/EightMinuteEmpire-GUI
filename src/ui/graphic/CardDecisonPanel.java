@@ -10,6 +10,7 @@ import static java.awt.Component.LEFT_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -22,7 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CardDecisonPanel extends JPanel implements Observer {
+public class CardDecisonPanel extends JPanel implements Observer{
 
     private final GameModel gm;
 

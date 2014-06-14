@@ -1,7 +1,7 @@
 package ui.graphic;
 
+import gameLogic.Game;
 import gameLogic.models.GameModel;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,29 +10,35 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class IntroPanel extends JPanel {
-    private GameModel gm;
+public class IntroPanel extends JPanel implements Observer{
+    private  GameModel gm;
+    private  JPanel south;
+    private  JPanel center;
     
-    private Image background;
+    private  JButton start = new JButton("Start Game");
+    private  JButton load = new JButton("Load Game");
+    private  JButton exit = new JButton("Exit");
     
-    private final JPanel south;
-    private final JPanel center;
-    
-    private final JButton start = new JButton("Start Game");
-    private final JButton exit = new JButton("Exit");
-
     IntroPanel(GameModel gm) {
         this.gm = gm;
-        
+        gm.addObserver(this);
         BufferedImage img = null;
+        
         try {
             img = ImageIO.read(Resources.getResourceFile("resources/images/eightminute-cover.jpg"));
         } catch (IOException e) {
@@ -85,7 +91,7 @@ public class IntroPanel extends JPanel {
                 }
             }
         });
-
+  
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,5 +109,9 @@ public class IntroPanel extends JPanel {
                 }
             }
         });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
     }
 }

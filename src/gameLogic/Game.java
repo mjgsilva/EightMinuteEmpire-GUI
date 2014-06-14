@@ -1,5 +1,6 @@
 package gameLogic;
 
+import ai.ComputerAI;
 import gameLogic.map.*;
 import gameLogic.states.*;
 import java.io.Serializable;
@@ -24,6 +25,8 @@ public class Game extends GameAdapter implements Serializable {
     private boolean endGameFlag;
     private boolean exitFlag = false;
 
+    private ComputerAI ai;
+    
     // Contructor
     public Game() {
         state = new PrepareGame(this);
@@ -189,7 +192,7 @@ public class Game extends GameAdapter implements Serializable {
         
         switch(nPlayers) {
             case 2:
-                n = 13;
+                n = 2;
                 break;
             case 3:
                 n = 10;
@@ -234,5 +237,9 @@ public class Game extends GameAdapter implements Serializable {
 
     public void setExitFlag(boolean exitFlag) {
         this.exitFlag = exitFlag;
+    }
+
+    public void setAi(ComputerAI ai) {
+        this.ai = ai;
     }
 }

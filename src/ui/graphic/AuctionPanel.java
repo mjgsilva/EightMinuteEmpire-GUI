@@ -85,16 +85,20 @@ class AuctionPanel extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        if (!initCombo) {
+        if (!initCombo) {   
+            initCombo = true;
+            for (; bets.size() < gm.getPlayers().size(); bets.add(0));
+            
+            
             for (int i = 0; i < gm.getPlayers().get(0).getCoins() + 1; i++)
                 bet.addItem(Integer.toString(i));
             
             registerListeners();
-            
-            for (; bets.size() < gm.getPlayers().size(); bets.add(0));
-            initCombo = true;
         }
         if (gm.getState() instanceof Auction) {
+            if (gm.getPlayers().size() == gm.getNumbAi())
+                gm.defineWinner(bets);
+            
             player.setText("" + gm.getPlayers().get(index).getId());
             player.setForeground(gm.getPlayers().get(index).getGraphicalColor());
 
@@ -135,7 +139,7 @@ class AuctionPanel extends JPanel implements Observer{
         b.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (index + 1 >= gm.getPlayers().size()) {
+                if (index + 1 >= gm.getPlayers().size() - gm.getNumbAi()) {
                     bets.set(index, bet.getSelectedIndex());
                     gm.defineWinner(bets);
                 } else {

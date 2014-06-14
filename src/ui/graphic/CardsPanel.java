@@ -2,7 +2,9 @@ package ui.graphic;
 
 import gameLogic.Card;
 import gameLogic.models.GameModel;
+import gameLogic.states.Auction;
 import gameLogic.states.PickCard;
+import gameLogic.states.PrepareGame;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -23,6 +25,8 @@ import javax.swing.JPanel;
 public class CardsPanel extends JPanel implements Observer{
     private GameModel gm;
     private JButton b;
+    
+    private boolean init = false;
     
     private int cardSelectedIndex;
 
@@ -67,7 +71,8 @@ public class CardsPanel extends JPanel implements Observer{
     }
     
     private void placeImg(JButton aux, int i) {
-        BufferedImage img = null;
+        //BufferedImage img = null;
+        Image img = null;
         try {
             if (i < 10)
                 img = ImageIO.read(Resources.getResourceFile("resources/images/cards/card0" + i + ".jpg"));
@@ -99,14 +104,18 @@ public class CardsPanel extends JPanel implements Observer{
     
     @Override
     public void update(Observable o, Object arg) {
-        fillCards();
-        if (gm.getState() instanceof PickCard) {
+        if (gm.getState() instanceof PickCard || init == false) {
             // Enable card buttons
             for (JButton aux : cardsImgs) 
                 aux.setEnabled(true);
             // update table cards
             fillCards();
+            init = true;
         } else
+            for (JButton aux : cardsImgs) 
+                aux.setEnabled(false);
+        
+        if (gm.getState() instanceof Auction)
             for (JButton aux : cardsImgs) 
                 aux.setEnabled(false);
     }

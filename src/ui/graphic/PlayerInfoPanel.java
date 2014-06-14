@@ -128,7 +128,7 @@ public class PlayerInfoPanel extends JPanel implements Observer{
                     defPlayerBt.setVisible(true);
                     
                     for (int i = 0; i < gm.getPlayers().size(); i++)
-                        playersCombo.addItem("Player " + i + 1);
+                        playersCombo.addItem("Player " + (i+1));
                 }
             } else {
                 cardDescription.setVisible(false);

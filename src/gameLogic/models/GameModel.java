@@ -83,4 +83,12 @@ public class GameModel extends GameAdapter implements Serializable {
     public boolean getEndGameFlag() {
         return game.getEndGameFlag();
     }
+    
+    private int numbAi;
+    public void setNumbAi(int numbAi) {
+        this.numbAi = numbAi;
+    }
+    public int getNumbAi() {
+        return numbAi;
+    }
 }

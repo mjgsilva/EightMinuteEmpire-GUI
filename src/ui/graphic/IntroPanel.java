@@ -1,6 +1,10 @@
 package ui.graphic;
 
+<<<<<<< HEAD
 import gameLogic.Game;
+=======
+import ai.ComputerAI;
+>>>>>>> c9cdae96369e5ad32b18563118c94056c6bbbd6b
 import gameLogic.models.GameModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -80,14 +84,18 @@ public class IntroPanel extends JPanel implements Observer{
                     for (int i = 0; i < Integer.parseInt(val.toString()) + 1; i++) {
                         optionsComputers[i] = Integer.toString(i);
                     }
-
+                    
                     Object val2 = JOptionPane.showInputDialog(null,
                             "Number of Computer Players:", "Define Number of Computer Players",
                             JOptionPane.INFORMATION_MESSAGE, null,
                             optionsComputers, optionsComputers[0]);
 
-                    if (val2 != null)
-                        gm.defineGame(Integer.parseInt(val.toString()));
+                    gm.defineGame(Integer.parseInt(val.toString()));
+                    
+                    if (val2 != null && Integer.parseInt(val2.toString()) != 0) {
+                        gm.getGame().setAi(new ComputerAI(gm, Integer.parseInt(val2.toString())));
+                        gm.setNumbAi(Integer.parseInt(val2.toString()));
+                    }
                 }
             }
         });

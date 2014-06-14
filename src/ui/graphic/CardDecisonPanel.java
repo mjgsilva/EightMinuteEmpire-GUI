@@ -97,6 +97,7 @@ public class CardDecisonPanel extends JPanel implements Observer{
             player.setText("" + gm.getPlayers().get(index).getId());
             player.setForeground(gm.getPlayers().get(index).getGraphicalColor());
         } else {
+            initCombo = false;
             setVisible(false);
         }
     }

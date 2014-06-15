@@ -192,7 +192,7 @@ public class Game extends GameAdapter implements Serializable {
         
         switch(nPlayers) {
             case 2:
-                n = 13;
+                n = 14;
                 break;
             case 3:
                 n = 10;

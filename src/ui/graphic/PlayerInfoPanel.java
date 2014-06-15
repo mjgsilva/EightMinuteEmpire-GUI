@@ -144,7 +144,7 @@ public class PlayerInfoPanel extends JPanel implements Observer{
         }
         
         if (gm.getEndGameFlag()) {
-            gm.defineGame(0);
+            gm.defineGamee(0);
             if (gm.getState() instanceof PrepareGame.DefineJokers) {
                 // JOKERS
                 // using auction panel to do the jokers insertion
@@ -158,6 +158,7 @@ public class PlayerInfoPanel extends JPanel implements Observer{
                     title.setText("- Game Over -");
                     player.setText("Winner is Player " + gm.getCurrentPlayer().getId() + "!");
                     coins.setVisible(false);
+                    checkBt.setVisible(false);
                 } else {
                     player.setText("Game tied! No one wins!");
                 }

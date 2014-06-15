@@ -46,6 +46,10 @@ public class GameModel extends GameAdapter implements Serializable {
         sendNotification();
     }
     
+    public void defineGamee(int n) {
+        game.defineGame(n);
+    }
+    
     public void sendNotification() {
         setChanged();
         notifyObservers();

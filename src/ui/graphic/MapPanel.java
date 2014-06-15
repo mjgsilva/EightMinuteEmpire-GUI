@@ -51,7 +51,6 @@ public class MapPanel extends JPanel implements Observer{
     private void loadMap(MapDataModel model)
     {
         URL url = Resources.getResourceFile("resources/map/eme.map");
-        System.out.println(url);
         try {
             ObjectInputStream ois=new ObjectInputStream(url.openStream());
             IMapData mr=(IMapData)(ois.readObject());

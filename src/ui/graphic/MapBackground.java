@@ -152,28 +152,6 @@ class MapBackground extends JPanel implements Observer{
             g.drawString(overLocation, x+10, y+10);
         }
         
-        /* if(lst.size()>=1){
-            Point p1=lst.get(0);
-            int diameter=10;
-            int x1=(int)(p1.getX());
-            int y1=(int)(p1.getY());
-            g.drawOval(x1-diameter/2, y1-diameter/2, diameter, diameter);
-        }
-
-         for(int i=0;i<lst.size()-1;i++)
-        {
-            Point p1=lst.get(i);
-            Point p2=lst.get(i+1);
-
-            int x1=(int)(p1.getX());
-            int x2=(int)(p2.getX());
-            int y1=(int)(p1.getY());
-            int y2=(int)(p2.getY());
-
-            g.drawLine(x1, y1, x2, y2);
-            int diameter=10;
-            g.drawOval(x2-diameter/2, y2-diameter/2, diameter, diameter);	
-        } */
          fill(g);
     }		
 }

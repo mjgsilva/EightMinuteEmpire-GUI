@@ -3,18 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/states/PrepareGame.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/states/MoveArmyByLand.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/Player.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/Game.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/ai/ComputerAI.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/states/PlaceNewArmy.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/ui/graphic/MapBackground.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/ui/graphic/IntroPanel.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/models/GameModel.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/gameLogic/states/BuildCity.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/ui/graphic/AuctionPanel.java</file>
-            <file>file:/home/danilo/Documents/ISEC/2oAno/2oSemestre/PA/projecto/2Fase/EMEGui/src/ui/graphic/UIGraphic.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/MainFrame.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/CardDecisonPanel.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/gameLogic/models/GameModel.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/AuctionPanel.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/IntroPanel.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/UIGraphic.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/graphic/MapBackground.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/gameLogic/Game.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ui/IsGraphical.java</file>
+            <file>file:/Users/mj/Documents/GitHub/EmeGUI/src/ai/ComputerAI.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,7 +7,7 @@ public class MapDataModel extends RegionModel implements IMapData{
     private static final long serialVersionUID = 1L;
     public static int modelCount=0;
 	
-    public MapDataModel(IMapData m){super(m); modelCount++;System.out.println(modelCount);}
+    public MapDataModel(IMapData m){super(m); modelCount++;}
     @Override
     public void setMapBackground(File f) {
         ((IMapData)r).setMapBackground(f);
@@ -16,7 +16,6 @@ public class MapDataModel extends RegionModel implements IMapData{
     }
 		
     public void setMapData(IMapData md){
-        System.out.println("Changing model from "+this.r+" to "+md);
 	this.r=md;
 	setChanged();
 	notifyObservers();

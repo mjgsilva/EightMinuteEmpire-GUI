@@ -9,3 +9,7 @@ About the project:
 - State Pattern
 - GUI
 
+Screenshots
+
+![Screenshot](https://raw.github.com/mjgsilva/EightMinuteEmpire-GUI/master/screenshots/ss_main.png)
+![Screenshot](https://raw.github.com/mjgsilva/EightMinuteEmpire-GUI/master/screenshots/ss_board.png)
